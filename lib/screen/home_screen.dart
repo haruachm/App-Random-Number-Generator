@@ -1,4 +1,6 @@
 // ignore_for_file: prefer_const_constructors
+import 'dart:math';
+
 import 'package:app_random_number_generaotr/constant/color.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<int> randomNum = [
+    1234,
+    5678,
+    9012,
+    3456,
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,17 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    1234,
-                    5678,
-                    9012,
-                    3456,
-                  ]
+                  children: randomNum
                       .asMap()
                       .entries
                       .map(
                         (x) => Padding(
-                          padding: EdgeInsets.only(bottom: x.key == 1 ? 0 : 30),
+                          padding: EdgeInsets.only(bottom: x.key == 3 ? 0 : 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: x.value
@@ -78,7 +81,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: ElevatedButton.styleFrom(
                     primary: red_color,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    final random = Random();
+
+                    final List<int> newNum = [];
+                    for (int i = 0; i < 5; i++) {
+                      final number = random.nextInt(1000000);
+                      newNum.add(number);
+
+                      setState(() {
+                        randomNum = newNum;
+                      });
+                    }
+                  },
                   child: Text('랜덤숫자 생성'),
                 ),
               )
