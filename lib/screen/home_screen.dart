@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:app_random_number_generaotr/constant/color.dart';
+import 'package:app_random_number_generaotr/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,8 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: 8,
-            horizontal: 16,
+            vertical: 8.0,
+            horizontal: 16.0,
           ),
           child: Column(
             children: [
@@ -66,7 +67,15 @@ class _Hearder extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return SettingScreen();
+                },
+              ),
+            );
+          },
           icon: Icon(
             Icons.android_sharp,
             color: green_color,
