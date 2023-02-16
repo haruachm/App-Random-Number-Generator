@@ -12,12 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<int> randomNum = [
-    1234,
-    5678,
-    9012,
-    3456,
-  ];
+  List<int> randomNum = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,13 +79,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     final random = Random();
 
-                    final List<int> newNum = [];
-                    for (int i = 0; i < 5; i++) {
+                    final Set<int> newNum = {};
+                    while (newNum.length != 5) {
                       final number = random.nextInt(1000000);
                       newNum.add(number);
 
                       setState(() {
-                        randomNum = newNum;
+                        randomNum = newNum.toList();
                       });
                     }
                   },
