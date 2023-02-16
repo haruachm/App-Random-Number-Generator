@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int maxNum = 1000000;
   List<int> randomNum = [];
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     final Set<int> newNum = {};
     while (newNum.length != 5) {
-      final number = random.nextInt(1000000);
+      final number = random.nextInt(maxNum);
       newNum.add(number);
 
       setState(() {
@@ -67,8 +68,8 @@ class _Hearder extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () {
-            Navigator.of(context).push(
+          onPressed: () async {
+            final result = await Navigator.of(context).push<int>(
               MaterialPageRoute(
                 builder: (BuildContext context) {
                   return SettingScreen();
