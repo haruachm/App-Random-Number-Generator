@@ -1,6 +1,7 @@
 # **랜덤 디자인 숫자 생성기**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ff9ee6a5-3969-442b-bc89-c7559203a004/Untitled.gif)
+![img](https://user-images.githubusercontent.com/85959639/219589042-85a042f8-20d9-4fec-b8cd-da599869f0c0.gif)
+
 
 </br>
 
