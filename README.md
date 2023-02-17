@@ -19,7 +19,7 @@
 
 ![https://blog.kakaocdn.net/dn/b7N5yz/btrZbrd9u4o/95Ag8laVMGANnS2LbBc8s0/img.png](https://blog.kakaocdn.net/dn/b7N5yz/btrZbrd9u4o/95Ag8laVMGANnS2LbBc8s0/img.png)
 
-```
+```dart
 import 'package:flutter/material.dart';
 
 const Color primary_color = Color(0xff2d2d33);
@@ -41,7 +41,7 @@ const Color white_color = Color(0xffffffff);
 
 ![https://blog.kakaocdn.net/dn/FdIX0/btrZchPMMOJ/0KK9RVDZln7qLhtBlu8G3K/img.png](https://blog.kakaocdn.net/dn/FdIX0/btrZchPMMOJ/0KK9RVDZln7qLhtBlu8G3K/img.png)
 
-```
+```dart
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 ![https://blog.kakaocdn.net/dn/O2IdU/btrZbRKBQlg/LSlY6mnzpSVdK8RG9wWRN0/img.png](https://blog.kakaocdn.net/dn/O2IdU/btrZbRKBQlg/LSlY6mnzpSVdK8RG9wWRN0/img.png)
 
-```
+```dart
 child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 8,
@@ -128,7 +128,7 @@ child: Padding(
 
 **예를 들어보자. 만약 아래와 같이 코드를 작성한다면 결과가 다음과 같다.**
 
-```
+```dart
 void main() {
   final number = '1357';
 
@@ -158,7 +158,7 @@ void main() {
 
 위에서 그대로 다뤘던 코드를 **'asset/img/$x.png'**에만 적용시켰을 뿐이다.
 
-```
+```dart
 Row(
                     children: 123456789
                         .toString()
@@ -182,7 +182,7 @@ Row(
 
 ### **Row()를 사용해 열 만들기**
 
-```
+```dart
 Expanded(
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -243,7 +243,7 @@ Expanded(
 
 ### **컬렉션과 Map 함수를 사용해 열 만들기**
 
-```
+```dart
 Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -286,7 +286,7 @@ padding: const EdgeInsets.only(bottom: 10),
 
 ![https://blog.kakaocdn.net/dn/csJMlT/btrZjrLjcxC/jhdkCxkemcTrkEQzA73zKk/img.png](https://blog.kakaocdn.net/dn/csJMlT/btrZjrLjcxC/jhdkCxkemcTrkEQzA73zKk/img.png)
 
-```
+```dart
 Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -345,11 +345,11 @@ padding: EdgeInsets.only(bottom: x.key == 1 ? 0 : 30),
 
 ![https://blog.kakaocdn.net/dn/cPPPqQ/btrZkavz6Tq/w9HoicX9CFc4S19pEGr8YK/img.png](https://blog.kakaocdn.net/dn/cPPPqQ/btrZkavz6Tq/w9HoicX9CFc4S19pEGr8YK/img.png)
 
-</br>
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ff9ee6a5-3969-442b-bc89-c7559203a004/Untitled.gif)
 
 **랜덤 숫자 print로 출력해보기**
 
-```
+```dart
 import 'dart:math';
 
                   onPressed: () {
@@ -366,7 +366,7 @@ import 'dart:math';
 - nextInt(1000000) 안에 숫자 이하의 랜덤 숫자를 생성한다.
 - 배열 변수에 추가한 숫자들을 상단에 선언한 randomNum에 씌워준다.
 
-```
+```dart
                   onPressed: () {
                     final random = Random();
 
@@ -397,7 +397,7 @@ import 'dart:math';
 - 중복을 자동으로 제거해주는 **Set()**를 사용하면 된다.
 - 그러나 기존과 같이 for문을 사용한다면, 중복값이 나왔을 때 제거가 되어 숫자의 열의 수가 줄어든다. 그것을 방지하기 위해 **while(newNum.length != 5)**를 사용해 5개의 열이 아니면 계속 반복문을 돌도록 설정해준다.
 
-```
+```dart
                   onPressed: () {
                     final random = Random();
 
@@ -413,3 +413,142 @@ import 'dart:math';
                   },
 ```
 
+### **코드 최적화 - home_screen.dart 파일**
+
+```dart
+// ignore_for_file: prefer_const_constructorsimport 'dart:math';
+
+import 'package:app_random_number_generaotr/constant/color.dart';
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<int> randomNum = [];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: primary_color,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 8,
+            horizontal: 16,
+          ),
+          child: Column(
+            children: [
+              _Hearder(),
+              _Body(randomNum: randomNum),
+              _Footer(onPressed: onRandomNumberGenerator),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void onRandomNumberGenerator() {
+    final random = Random();
+
+    final Set<int> newNum = {};
+    while (newNum.length != 5) {
+      final number = random.nextInt(1000000);
+      newNum.add(number);
+
+      setState(() {
+        randomNum = newNum.toList();
+      });
+    }
+  }
+}
+
+class _Hearder extends StatelessWidget {
+  const _Hearder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          ' ⚡ NUMBER MAKER',
+          style: TextStyle(
+            color: white_color,
+            fontSize: 25,
+          ),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.android_sharp,
+            color: green_color,
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  final List<int> randomNum;
+
+  const _Body({required this.randomNum, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: randomNum
+            .asMap()
+            .entries
+            .map(
+              (x) => Padding(
+                padding: EdgeInsets.only(bottom: x.key == 3 ? 0 : 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: x.value
+                      .toString()
+                      .split('')
+                      .map((x) => Image.asset(
+                            'asset/img/$x.png',
+                            width: 40,
+                            height: 60,
+                          ))
+                      .toList(),
+                ),
+              ),
+            )
+            .toList(),
+      ),
+    );
+  }
+}
+
+class _Footer extends StatelessWidget {
+  final VoidCallback onPressed;
+  const _Footer({
+    required this.onPressed,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: red_color,
+        ),
+        onPressed: onPressed,
+        child: Text('랜덤숫자 생성'),
+      ),
+    );
+  }
+}
+```
