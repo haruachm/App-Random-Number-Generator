@@ -345,5 +345,71 @@ padding: EdgeInsets.only(bottom: x.key == 1 ? 0 : 30),
 
 ![https://blog.kakaocdn.net/dn/cPPPqQ/btrZkavz6Tq/w9HoicX9CFc4S19pEGr8YK/img.png](https://blog.kakaocdn.net/dn/cPPPqQ/btrZkavz6Tq/w9HoicX9CFc4S19pEGr8YK/img.png)
 
+</br>
 
+**랜덤 숫자 print로 출력해보기**
+
+```
+import 'dart:math';
+
+                  onPressed: () {
+                    final random = Random();
+                    print(random.nextInt(100));
+                  },
+```
+
+---
+
+**setState()를 사용해 빌드를 할 때 randomNum을 덮어 씌우도록 한다.**
+
+- 5번의 for문을 돌아 5줄의 랜덤 넘버가 생성이 된다.
+- nextInt(1000000) 안에 숫자 이하의 랜덤 숫자를 생성한다.
+- 배열 변수에 추가한 숫자들을 상단에 선언한 randomNum에 씌워준다.
+
+```
+                  onPressed: () {
+                    final random = Random();
+
+                    final List<int> newNum = [];
+                    for (int i = 0; i < 5; i++) {
+                      final number = random.nextInt(1000000);
+                      newNum.add(number);
+
+                      setState(() {
+                        randomNum = newNum;
+                      });
+                    }
+                  },
+```
+
+**상단에 randomNum 선언 부분**
+
+![https://blog.kakaocdn.net/dn/cY7ajP/btrZryKOnL4/UBxobMRHVwWUJrPnvMiB20/img.png](https://blog.kakaocdn.net/dn/cY7ajP/btrZryKOnL4/UBxobMRHVwWUJrPnvMiB20/img.png)
+
+**randomNum을 활용한 숫자 split 후 이미지 매칭 부분**
+
+![https://blog.kakaocdn.net/dn/bckcjZ/btrZrUz3ajh/AuVYLW7pNs6RiyZcXq62Dk/img.png](https://blog.kakaocdn.net/dn/bckcjZ/btrZrUz3ajh/AuVYLW7pNs6RiyZcXq62Dk/img.png)
+
+---
+
+### **중복된 랜덤숫자 제거하기**
+
+- 중복을 자동으로 제거해주는 **Set()**를 사용하면 된다.
+- 그러나 기존과 같이 for문을 사용한다면, 중복값이 나왔을 때 제거가 되어 숫자의 열의 수가 줄어든다. 그것을 방지하기 위해 **while(newNum.length != 5)**를 사용해 5개의 열이 아니면 계속 반복문을 돌도록 설정해준다.
+
+```
+                  onPressed: () {
+                    final random = Random();
+
+                    final Set<int> newNum = {};
+                    while(newNum.length != 5){
+                      final number = random.nextInt(1000000);
+                      newNum.add(number);
+
+                      setState(() {
+                        randomNum = newNum.toList();
+                      });
+                    }
+                  },
+```
 
