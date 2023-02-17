@@ -1,3 +1,11 @@
+# **랜덤 디자인 숫자 생성기**
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ff9ee6a5-3969-442b-bc89-c7559203a004/Untitled.gif)
+
+</br>
+
+---
+
 ## **랜덤 디자인 숫자 생성기 앱 위젯 스타일 꾸미기**
 
 ### **style 값 constant 폴더에 따로 관리하기**
@@ -335,3 +343,6 @@ padding: EdgeInsets.only(bottom: x.key == 1 ? 0 : 30),
 그렇다면 마지막 요소의 바텀 패딩을 0으로 주기 위해서는 '**x.key == 마지막 줄'**이 되면 된다.
 
 ![https://blog.kakaocdn.net/dn/cPPPqQ/btrZkavz6Tq/w9HoicX9CFc4S19pEGr8YK/img.png](https://blog.kakaocdn.net/dn/cPPPqQ/btrZkavz6Tq/w9HoicX9CFc4S19pEGr8YK/img.png)
+
+
+
