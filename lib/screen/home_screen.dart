@@ -27,7 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           child: Column(
             children: [
-              _Hearder(),
+              _Hearder(
+                onPressed: onSettingPop,
+              ),
               _Body(randomNum: randomNum),
               _Footer(onPressed: onRandomNumberGenerator),
             ],
@@ -35,6 +37,22 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  void onSettingPop() async {
+    final result = await Navigator.of(context).push<int>(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return SettingScreen();
+        },
+      ),
+    );
+
+    if (result != null) {
+      setState(() {
+        maxNum = result;
+      });
+    }
   }
 
   void onRandomNumberGenerator() {
@@ -53,7 +71,12 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class _Hearder extends StatelessWidget {
-  const _Hearder({super.key});
+  final VoidCallback onPressed;
+
+  const _Hearder({
+    required this.onPressed,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,16 +91,7 @@ class _Hearder extends StatelessWidget {
           ),
         ),
         IconButton(
-          onPressed: () async {
-            final result = await Navigator.of(context).push<int>(
-              MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return SettingScreen();
-                },
-              ),
-            );
-            print(result);
-          },
+          onPressed: onPressed,
           icon: Icon(
             Icons.android_sharp,
             color: green_color,
