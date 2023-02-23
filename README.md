@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 ---
 
-### **보기 좋게 Padding 적용하기**
+### ** Padding 적용하기**
 
 ![https://blog.kakaocdn.net/dn/di03ya/btrZbo2UkNI/AszRbFdD2yFQOBcV6gqJ6K/img.png](https://blog.kakaocdn.net/dn/di03ya/btrZbo2UkNI/AszRbFdD2yFQOBcV6gqJ6K/img.png)
 
