@@ -41,11 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void onSettingPop() async {
     final result = await Navigator.of(context).push<int>(
-      MaterialPageRoute(
-        builder: (BuildContext context) {
-          return SettingScreen();
-        },
-      ),
+      MaterialPageRoute(builder: (BuildContext context) {
+        return SettingScreen(
+          maxNum: maxNum,
+        );
+      }),
     );
 
     if (result != null) {
