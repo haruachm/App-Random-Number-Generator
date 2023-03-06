@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:math';
 
+import 'package:app_random_number_generaotr/component/number_display.dart';
 import 'package:app_random_number_generaotr/constant/color.dart';
 import 'package:app_random_number_generaotr/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
@@ -117,20 +118,10 @@ class _Body extends StatelessWidget {
             .entries
             .map(
               (x) => Padding(
-                padding: EdgeInsets.only(bottom: x.key == 3 ? 0 : 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: x.value
-                      .toString()
-                      .split('')
-                      .map((x) => Image.asset(
-                            'asset/img/$x.png',
-                            width: 40,
-                            height: 60,
-                          ))
-                      .toList(),
-                ),
-              ),
+                  padding: EdgeInsets.only(bottom: x.key == 3 ? 0 : 10),
+                  child: NumberDisplay(
+                    number: x.value.toInt(),
+                  )),
             )
             .toList(),
       ),

@@ -1,6 +1,8 @@
 import 'package:app_random_number_generaotr/constant/color.dart';
 import 'package:flutter/material.dart';
 
+import '../component/number_display.dart';
+
 class SettingScreen extends StatefulWidget {
   final int maxNum;
 
@@ -67,19 +69,8 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Row(
-        children: maxNum
-            .toInt()
-            .toString()
-            .split('')
-            .map(
-              (x) => Image.asset(
-                'asset/img/$x.png',
-                width: 50.0,
-                height: 80.0,
-              ),
-            )
-            .toList(),
+      child: NumberDisplay(
+        number: maxNum.toInt(),
       ),
     );
   }
