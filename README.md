@@ -1,4 +1,4 @@
-# ** 랜덤숫자 생성기 **
+# 랜덤숫자 생성기
 
 ![img](https://user-images.githubusercontent.com/85959639/219589042-85a042f8-20d9-4fec-b8cd-da599869f0c0.gif)
 
